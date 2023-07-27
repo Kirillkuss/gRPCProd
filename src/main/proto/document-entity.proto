@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.rpc.itrail";
+
+message Document {
+    int64 idDocument = 1;
+    string typeDocument  = 2;
+    string seria = 3;
+    string numar = 4;
+    string snils = 5;
+    string polis = 6;
+}

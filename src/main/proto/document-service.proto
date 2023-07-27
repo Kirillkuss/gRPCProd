@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.rpc.itrail";
+
+message DocumentRequest{
+    int64 idDocument = 1;
+}
+
+message DocumentResponse {
+    int64 idDocument = 1;
+    string typeDocument  = 2;
+    string seria = 3;
+    string numar = 4;
+    string snils = 5;
+    string polis = 6;
+}
+
+message ListDocument{
+    repeated DocumentResponse documentResponse = 6 ; 
+}
+
+service DocumentService {
+  rpc findById( DocumentRequest ) returns ( DocumentResponse ) {};
+  rpc findAll( DocumentRequest ) returns ( ListDocument ) {};
+  rpc addDocument( DocumentResponse ) returns ( DocumentResponse );
+}

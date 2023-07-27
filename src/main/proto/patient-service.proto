@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+import "gender-enum.proto";
+import "document-entity.proto";
+
+option java_multiple_files = true;
+option java_package = "com.rpc.itrail";
+
+message PatientRequest{
+    int64 idPatient = 1;
+}
+
+message PatientWithoutParams{
+}
+
+message PatientResponse {
+    int64 idPatient   = 1;
+    string surname    = 2;
+    string name       = 3;
+    string fullname   = 4;
+    Gender gender     = 5;
+    string phone      = 6;
+    string adderss    = 7;
+    Document document = 8;
+}
+
+message PatientCreate {
+    int64 idPatient   = 1;
+    string surname    = 2;
+    string name       = 3;
+    string fullname   = 4;
+    Gender gender     = 5;
+    string phone      = 6;
+    string adderss    = 7;
+    int64 idDocument  = 8;
+}
+
+message ListPatient{
+    repeated PatientResponse patientResponse = 7 ; 
+}
+
+service PatientService {
+  rpc findById( PatientRequest ) returns ( PatientResponse ) {};
+  rpc findAll( PatientWithoutParams ) returns ( ListPatient ) {};
+  rpc addPatient( PatientCreate ) returns ( PatientResponse );
+}
