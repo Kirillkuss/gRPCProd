@@ -20,7 +20,7 @@ message ListDocument{
     repeated DocumentResponse documentResponse = 6 ; 
 }
 
-service DocumentService {
+service GDocumentService {
   rpc findById( DocumentRequest ) returns ( DocumentResponse ) {};
   rpc findAll( DocumentRequest ) returns ( ListDocument ) {};
   rpc addDocument( DocumentResponse ) returns ( DocumentResponse );

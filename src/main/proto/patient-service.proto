@@ -39,7 +39,7 @@ message ListPatient{
     repeated PatientResponse patientResponse = 7 ; 
 }
 
-service PatientService {
+service GPatientService {
   rpc findById( PatientRequest ) returns ( PatientResponse ) {};
   rpc findAll( PatientWithoutParams ) returns ( ListPatient ) {};
   rpc addPatient( PatientCreate ) returns ( PatientResponse );
