@@ -34,7 +34,7 @@ public class GDocumentService extends GDocumentServiceGrpc.GDocumentServiceImplB
                                          .setPolis( document.getPolis() )
                                          .build() );
         response.onCompleted();
-        log.info( "Find document by id ");
+        log.info( " GDocumentService - Find document by id ");
     }
 
     public void findAll( DocumentRequest request, StreamObserver<ListDocument> response ){
@@ -55,7 +55,7 @@ public class GDocumentService extends GDocumentServiceGrpc.GDocumentServiceImplB
                                      .addAllDocumentResponse( listDocumentResponse )
                                      .build() );
         response.onCompleted();
-        log.info( "Find all documents ");
+        log.info( " GDocumentService - Find all documents ");
     }
 
     public void addDocument( DocumentResponse request , StreamObserver<DocumentResponse> response ){
@@ -78,7 +78,7 @@ public class GDocumentService extends GDocumentServiceGrpc.GDocumentServiceImplB
                                              .setPolis( document.getPolis() )
                                              .build() );                                                       
         response.onCompleted();
-        log.info( "Added document");
+        log.info( "GDocumentService - Added document");
     }
 
 }

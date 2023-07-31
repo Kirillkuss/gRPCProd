@@ -1,7 +1,6 @@
 package com.rpc.itrail.model;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,13 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import io.swagger.v3.oas.annotations.Hidden;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
 
 @Entity
 @Table
@@ -35,7 +34,7 @@ public class Patient implements Serializable{
     @Column( name = "surname" )
     private String surname;
 
-        @Column( name = "name" )
+    @Column( name = "name" )
     private String name;
 
     @Column( name = "full_name")
@@ -51,9 +50,8 @@ public class Patient implements Serializable{
     private String address;
 
     @OneToOne
+    @Hidden
     @JoinColumn( name = "document_id", referencedColumnName = "id_document")
     private Document document;
 
-
-    
 }
