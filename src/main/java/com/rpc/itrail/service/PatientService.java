@@ -19,7 +19,7 @@ import net.devh.boot.grpc.client.inject.GrpcClient;
 @Service
 public class PatientService {
 
-    @GrpcClient("gRPCRrod")
+    @GrpcClient("gRPCProd")
     private GPatientServiceGrpc.GPatientServiceBlockingStub patientServiceBlockingStub;
 
     public Patient findById( Long id ){

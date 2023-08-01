@@ -16,7 +16,7 @@ import net.devh.boot.grpc.client.inject.GrpcClient;
 @Service
 public class DocumentService {
     
-    @GrpcClient("gRPCRrod")
+    @GrpcClient("gRPCProd")
     private GDocumentServiceGrpc.GDocumentServiceBlockingStub documentServiceBlockingStub;
     /**
      * Поиск по ИД
