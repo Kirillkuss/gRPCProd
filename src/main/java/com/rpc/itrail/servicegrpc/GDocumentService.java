@@ -59,24 +59,24 @@ public class GDocumentService extends GDocumentServiceGrpc.GDocumentServiceImplB
     }
 
     public void addDocument( DocumentResponse request , StreamObserver<DocumentResponse> response ){
-            if  ( documentRepository.findById( request.getIdDocument() ).isPresent() ) throw new IllegalArgumentException( "Документ с таким ИД уже существует");
-            if ( documentRepository.findByNumar( request.getNumar()).isPresent() ) throw new IllegalArgumentException( "Документ с таким номером документа уже существует");
-            if ( documentRepository.findByPolis( request.getPolis()).isPresent() ) throw new IllegalArgumentException( "Документ с таким полисом уже существует");
-            if ( documentRepository.findBySnils( request.getSnils()).isPresent() ) throw new IllegalArgumentException( "Документ с таким СНИЛСом уже существует");
-            Document document = documentRepository.save( new Document( request.getIdDocument(),
-                                                                       request.getTypeDocument(),
-                                                                       request.getSeria(),
-                                                                       request.getNumar(),
-                                                                       request.getSnils(),
-                                                                       request.getPolis() ));
-            response.onNext( DocumentResponse.newBuilder()
-                                             .setIdDocument( document.getIdDocument() )
-                                             .setTypeDocument( document.getTypeDocument() )
-                                             .setSeria( document.getSeria() )
-                                             .setNumar( document.getNumar() )
-                                             .setSnils( document.getSnils() )
-                                             .setPolis( document.getPolis() )
-                                             .build() );                                                       
+        if  ( documentRepository.findById( request.getIdDocument() ).isPresent() ) throw new IllegalArgumentException( "Документ с таким ИД уже существует");
+        if ( documentRepository.findByNumar( request.getNumar()).isPresent() ) throw new IllegalArgumentException( "Документ с таким номером документа уже существует");
+        if ( documentRepository.findByPolis( request.getPolis()).isPresent() ) throw new IllegalArgumentException( "Документ с таким полисом уже существует");
+        if ( documentRepository.findBySnils( request.getSnils()).isPresent() ) throw new IllegalArgumentException( "Документ с таким СНИЛСом уже существует");
+        Document document = documentRepository.save( new Document( request.getIdDocument(),
+                                                                   request.getTypeDocument(),
+                                                                   request.getSeria(),
+                                                                   request.getNumar(),
+                                                                   request.getSnils(),
+                                                                   request.getPolis() ));
+        response.onNext( DocumentResponse.newBuilder()
+                                         .setIdDocument( document.getIdDocument() )
+                                         .setTypeDocument( document.getTypeDocument() )
+                                         .setSeria( document.getSeria() )
+                                         .setNumar( document.getNumar() )
+                                         .setSnils( document.getSnils() )
+                                         .setPolis( document.getPolis() )
+                                         .build() );                                                       
         response.onCompleted();
         log.info( "GDocumentService - Added document");
     }

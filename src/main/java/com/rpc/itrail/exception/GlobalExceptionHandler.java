@@ -26,6 +26,7 @@ public class GlobalExceptionHandler  {
 
     @GrpcExceptionHandler( IllegalArgumentException.class )
     public StatusRuntimeException handleValidationError( IllegalArgumentException ex ){
+        log.error( Code.INVALID_ARGUMENT.getNumber() + " " + ex.getMessage() );   
         return StatusProto.toStatusRuntimeException( Status.newBuilder()
                                                            .setCode( Code.INVALID_ARGUMENT.getNumber())
                                                            .setMessage( ex.getMessage())
@@ -34,6 +35,7 @@ public class GlobalExceptionHandler  {
 
     @GrpcExceptionHandler( Exception.class )
     public StatusRuntimeException  handleValidationError( Exception ex ){
+        log.error( Code.NOT_FOUND.getNumber() + " " + ex.getMessage() );   
         return StatusProto.toStatusRuntimeException( Status.newBuilder()
                                                            .setCode( Code.UNKNOWN.getNumber())
                                                            .setMessage( ex.getMessage())

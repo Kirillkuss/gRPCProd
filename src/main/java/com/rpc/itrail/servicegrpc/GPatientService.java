@@ -94,39 +94,37 @@ public class GPatientService extends GPatientServiceGrpc.GPatientServiceImplBase
      * Добавить пациента
      */
     public void addPatient( PatientCreate request, StreamObserver<PatientResponse> response ){
-            com.rpc.itrail.model.Document document = documentRepository.findById( request.getIdDocument() )
+        com.rpc.itrail.model.Document document = documentRepository.findById( request.getIdDocument() )
                                                                        .orElseThrow( () -> new IllegalArgumentException( "Документа с таким ИД не существует, укажите другой") );
-            if( patientRepository.findPatientByIdDocument( request.getIdDocument() ).isPresent() ) throw new IllegalArgumentException( "Значение 'idDocument' не уникально ");                                                    
-            if( patientRepository.findById( request.getIdPatient() ).isPresent() ) throw new IllegalArgumentException( "Значение 'idPatient' не уникально ");
-            if( patientRepository.findByPhone( request.getPhone() ).isPresent() ) throw new IllegalArgumentException( "Значение 'phone' пациента не уникально ");
-            Patient patient =  patientRepository.save( new Patient( request.getIdPatient(),
-                                                                    request.getSurname(),
-                                                                    request.getName(),
-                                                                    request.getFullname(),
-                                                                    request.getGender(),
-                                                                    request.getPhone(),
-                                                                    request.getAdderss(),
-                                                                    document ) );
-            response.onNext( PatientResponse.newBuilder()
-                                            .setIdPatient( patient.getIdPatient() )
-                                            .setSurname( patient.getSurname() )
-                                            .setName( patient.getName() )
-                                            .setFullname( patient.getFullname() )
-                                            .setAdderss( patient.getAddress() )
-                                            .setGender( patient.getGender() )
-                                            .setPhone( patient.getPhone() )
-                                            .setDocument( Document.newBuilder()
-                                                                  .setIdDocument( patient.getDocument().getIdDocument() )
-                                                                  .setTypeDocument( patient.getDocument().getTypeDocument() )
-                                                                  .setNumar( patient.getDocument().getNumar() )
-                                                                  .setSeria( patient.getDocument().getSeria() )
-                                                                  .setSnils( patient.getDocument().getSnils() )
-                                                                  .setPolis( patient.getDocument().getPolis() )
-                                                                  .build())
-                                            .build() );  
-            response.onCompleted();                                                                                      
-            log.info( "Added patient" );                        
+        if( patientRepository.findPatientByIdDocument( request.getIdDocument() ).isPresent() ) throw new IllegalArgumentException( "Значение 'idDocument' не уникально ");                                                    
+        if( patientRepository.findById( request.getIdPatient() ).isPresent() ) throw new IllegalArgumentException( "Значение 'idPatient' не уникально ");
+        if( patientRepository.findByPhone( request.getPhone() ).isPresent() ) throw new IllegalArgumentException( "Значение 'phone' пациента не уникально ");
+        Patient patient =  patientRepository.save( new Patient( request.getIdPatient(),
+                                                                request.getSurname(),
+                                                                request.getName(),
+                                                                request.getFullname(),
+                                                                request.getGender(),
+                                                                request.getPhone(),
+                                                                request.getAdderss(),
+                                                                document ) );
+        response.onNext( PatientResponse.newBuilder()
+                                        .setIdPatient( patient.getIdPatient() )
+                                        .setSurname( patient.getSurname() )
+                                        .setName( patient.getName() )
+                                        .setFullname( patient.getFullname() )
+                                        .setAdderss( patient.getAddress() )
+                                        .setGender( patient.getGender() )
+                                        .setPhone( patient.getPhone() )
+                                        .setDocument( Document.newBuilder()
+                                                              .setIdDocument( patient.getDocument().getIdDocument() )
+                                                              .setTypeDocument( patient.getDocument().getTypeDocument() )
+                                                              .setNumar( patient.getDocument().getNumar() )
+                                                              .setSeria( patient.getDocument().getSeria() )
+                                                              .setSnils( patient.getDocument().getSnils() )
+                                                              .setPolis( patient.getDocument().getPolis() )
+                                                              .build())
+                                        .build() );  
+        response.onCompleted();                                                                                      
+        log.info( "Added patient" );                        
     }
-
-    
 }
